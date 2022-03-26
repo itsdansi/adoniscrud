@@ -31,12 +31,24 @@
       <tr>
         <td>{{product ? index+1 : N/A}}</td>
         <td>{{product ? product.name : N/A}}</td>
-        <td>{{product ? product.icon  : N/A}}</td>
-        <td>{{product ? product.slug : N/A}}</td>
+        <td>{{product ? product.description  : N/A}}</td>
+        <td>{{product ? product.price : N/A}}</td>
+        <td>{{product ? product.category_id : N/A}}</td>
+        <td>{{product ? product.image : N/A}}</td>
+
         <td>
           <a href="{{route('products.edit',{id:product.id})}}" type="button" class="btn btn-primary btn-sm">Edit</a>
-          <a href="{{route('products.destroy',{id: product.id})}}" type="button" class="btn btn-danger btn-sm">Delete</a>
-        </td>
+          <form
+          action="{{ `/products/${product.id}?_method=DELETE` }}"
+          method="post"
+        >
+          <button
+            type="submit"
+            class="btn btn-sm btn-danger ml-2"
+          >
+            Delete
+          </button>
+        </form>        </td>
         </tr>
       @endeach
     </tbody>

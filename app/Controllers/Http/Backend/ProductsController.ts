@@ -27,7 +27,8 @@ export default class ProductsController {
 
   public async edit({ params, view }: HttpContextContract) {
     const product = await Product.find(params.id)
-    return view.render('backend/Product/edit', { product })
+    const category = await Category.all()
+    return view.render('backend/product/edit', { product, category })
   }
 
   public async update({ params, request, response }: HttpContextContract) {
@@ -40,6 +41,6 @@ export default class ProductsController {
   public async destroy({ params, response }: HttpContextContract) {
     const product = await Product.find(params.id)
     await product?.delete()
-    return response.redirect('/categories')
+    return response.redirect('/products')
   }
 }

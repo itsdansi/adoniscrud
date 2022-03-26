@@ -34,8 +34,17 @@
         <td>{{category ? category.slug : N/A}}</td>
         <td>
           <a href="{{route('categories.edit',{id:category.id})}}" type="button" class="btn btn-primary btn-sm">Edit</a>
-          <a href="{{route('categories.destroy',{id: category.id})}}" type="button" class="btn btn-danger btn-sm">Delete</a>
-        </td>
+          <form
+          action="{{ `/categories/${category.id}?_method=DELETE` }}"
+          method="post"
+        >
+          <button
+            type="submit"
+            class="btn btn-sm btn-danger ml-2"
+          >
+            Delete
+          </button>
+        </form>          </td>
         </tr>
       @endeach
     </tbody>
