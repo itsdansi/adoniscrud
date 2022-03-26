@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Adonis CRUD</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Product List</h2>
+  <p>Following products are currently available in out site</p>    
+  <a href="{{route('/products/create')}}" type="button" class="btn btn-primary btn-sm float-left">Add Product</a>        
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>S.N.</th>
+        <th>Product Name</th> 
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each((product,index) in products)
+      <tr>
+        <td>{{product ? index+1 : N/A}}</td>
+        <td>{{product ? product.name : N/A}}</td>
+        <td>{{product ? product.icon  : N/A}}</td>
+        <td>{{product ? product.slug : N/A}}</td>
+        <td>
+          <a href="{{route('products.edit',{id:product.id})}}" type="button" class="btn btn-primary btn-sm">Edit</a>
+          <a href="{{route('products.destroy',{id: product.id})}}" type="button" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
